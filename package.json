@@ -1,0 +1,11 @@
+{
+  "name": "rsa-algorithm",
+  "version": "1.0.0",
+  "description": "",
+  "main": "rsa.js",
+  "scripts": {
+    "start": "nodemon rsa.js"
+  },
+  "author": "",
+  "license": "ISC"
+}
