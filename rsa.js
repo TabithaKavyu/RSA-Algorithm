@@ -1,17 +1,18 @@
+//NAME: KAVYU THABITHA REG NO: P15/81759/2017
+
 const crypto = require("crypto")
 
 // The `generateKeyPairSync` method accepts two arguments:
-// 1. The type ok keys we want, which in this case is "rsa"
+// 1. The type ok keys- in this case : "rsa"
 // 2. An object with the properties of the key
 const { publicKey, privateKey } = crypto.generateKeyPairSync("rsa", {
-	// The standard secure default length for RSA keys is 2048 bits
-	modulusLength: 2048,
+	
+	modulusLength: 2048, //// The standard secure default length for RSA keys is 2048 bits
 })
 
-// use the public and private keys
-// ...
-// This is the data we want to encrypt
-const data = "Hello World"
+
+
+const data = "RSA Algorithm" //  This is the data to encrypted
 
 const encryptedData = crypto.publicEncrypt(
 	{
@@ -19,25 +20,23 @@ const encryptedData = crypto.publicEncrypt(
 		padding: crypto.constants.RSA_PKCS1_OAEP_PADDING,
 		oaepHash: "sha256",
 	},
-	// We convert the data string to a buffer using `Buffer.from`
-	Buffer.from(data)
+	
+	Buffer.from(data) //  converts the data string to a buffer using `Buffer.from`
 )
 
-// The encrypted data is in the form of bytes, so we print it in base64 format
-// so that it's displayed in a more readable form
-console.log("encypted data: ", encryptedData.toString("base64"))
+
+console.log("encypted data: ", encryptedData.toString("base64")) //prints the encrypted data in base64 format 
 const decryptedData = crypto.privateDecrypt(
 	{
 		key: privateKey,
-		// In order to decrypt the data, we need to specify the
-		// same hashing function and padding scheme that we used to
-		// encrypt the data in the previous step
+		// In order to decrypt the data, 
+		// same hashing function and padding scheme used to
+		// encrypt the data in the previous step needs to be specified
 		padding: crypto.constants.RSA_PKCS1_OAEP_PADDING,
 		oaepHash: "sha256",
 	},
 	encryptedData
 )
 
-// The decrypted data is of the Buffer type, which we can convert to a
-// string to reveal the original data
-console.log("decrypted data: ", decryptedData.toString())
+
+console.log("decrypted data: ", decryptedData.toString()) 
