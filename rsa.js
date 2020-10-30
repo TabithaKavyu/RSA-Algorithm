@@ -40,3 +40,27 @@ const decryptedData = crypto.privateDecrypt(
 
 
 console.log("decrypted data: ", decryptedData.toString()) 
+
+// Digital Signatures
+
+const verifiableData = "CSC 411"; //creates data to sign
+
+const signature = crypto.sign("sha256", Buffer.from(verifiableData), {
+	key: privateKey,
+	padding: crypto.constants.RSA_PKCS1_PSS_PADDING,
+})
+
+console.log(signature.toString("base64"))
+
+const isVerified = crypto.verify(
+	"sha256",
+	Buffer.from(verifiableData),
+	{
+		key: publicKey,
+		padding: crypto.constants.RSA_PKCS1_PSS_PADDING,
+	},
+	signature
+)
+
+
+console.log("signature verified: ", isVerified)  //isVerified returns `true` if the signature is valid
