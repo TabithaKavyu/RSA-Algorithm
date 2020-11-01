@@ -43,8 +43,11 @@ console.log("decrypted data: ", decryptedData.toString())
 
 // Digital Signatures
 
-const verifiableData = "CSC 411"; //creates data to sign
+const verifiableData = "RSA Algorithm"; //creates data to sign
 
+// The signature method takes the data  to  be signed, the
+// hashing algorithm, and the padding scheme, and generates
+// a signature in the form of bytes
 const signature = crypto.sign("sha256", Buffer.from(verifiableData), {
 	key: privateKey,
 	padding: crypto.constants.RSA_PKCS1_PSS_PADDING,
